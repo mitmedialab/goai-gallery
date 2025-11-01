@@ -184,23 +184,41 @@
             const SHEET_URL = "https://opensheet.elk.sh/1nyUkE4ZwKG3wHfStOEMgwGjhwRg4tmdCSEBxtBk4xj0/Form%20Responses%201";
             const projectsGrid = document.getElementById('projects-grid');
 
+            // Placeholder color array - replace with your colors later
+            const cardColors = [
+                '#81b9f4',
+                '#fcc79b',
+                '#82ca9c',
+                '#cde3fb',
+                '#fee6d3',
+                '#d8eddd',
+            ];
+
+            // Function to get a random color from the array
+            function getRandomColor() {
+                return cardColors[Math.floor(Math.random() * cardColors.length)];
+            }
+
             // Function to create a project card
             function createProjectCard(project) {
                 const title = project["What is your project title?"] || "Untitled Project";
-                const imageLink = project.imageLink || "";
+                const studentName = project["What's your name?"] || "Student";
                 const projectLink = project.projectLink || "";
+                const randomColor = getRandomColor();
                 
                 // Format the playground URL with cors-anywhere proxy
                 const playgroundUrl = projectLink 
                     ? `https://playground.raise.mit.edu/main/?project=https://cors-anywhere.herokuapp.com/${projectLink}`
                     : "#";
 
-                // Create card HTML matching the existing gallery card style
+                // Create card HTML with colored background instead of image
                 const cardHTML = `
-                    <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                        <img alt="${title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="${imageLink}" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'"/>
+                    <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="min-height: 300px;">
+                        <div class="w-full h-full transition-transform duration-300 group-hover:scale-110 flex flex-col items-center justify-center p-6 text-center" style="background-color: ${randomColor}; min-height: 300px;">
+                            <h3 class="text-2xl font-bold text-white mb-2">${title}</h3>
+                            <p class="text-white/90 text-lg">${studentName}</p>
+                        </div>
                         <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
-                            <h3 class="text-xl font-bold text-white mb-4">${title}</h3>
                             <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="${playgroundUrl}" target="_blank">
                                 <span class="material-icons-outlined text-lg">play_arrow</span>
                                 Try me!
@@ -223,8 +241,8 @@
                         
                         // Generate cards for each project
                         data.forEach(project => {
-                            // Only create card if we have the necessary data
-                            if (project["What is your project title?"] && project.imageLink && project.projectLink) {
+                            // Only create card if we have the necessary data (title and project link)
+                            if (project["What is your project title?"] && project.projectLink) {
                                 const cardHTML = createProjectCard(project);
                                 const tempDiv = document.createElement('div');
                                 tempDiv.innerHTML = cardHTML.trim();
