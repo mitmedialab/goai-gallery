@@ -65,7 +65,7 @@
             <section class="py-16 md:py-24" id="projects">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900 dark:text-white">Explore Projects</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                             <img alt="Dancing Stick Figure GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/hand-spray-paint.gif"/>
                             <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
@@ -179,10 +179,40 @@
         </div>
         
         <script>
-            // Google Sheet import and console logging
+            // Google Sheet import and card generation
             // NOTE: Sheet permissions must be set to "Anyone with the link can edit" in order for this to work!
             const SHEET_URL = "https://opensheet.elk.sh/1nyUkE4ZwKG3wHfStOEMgwGjhwRg4tmdCSEBxtBk4xj0/Form%20Responses%201";
+            const projectsGrid = document.getElementById('projects-grid');
 
+            // Function to create a project card
+            function createProjectCard(project) {
+                const title = project["What is your project title?"] || "Untitled Project";
+                const imageLink = project.imageLink || "";
+                const projectLink = project.projectLink || "";
+                
+                // Format the playground URL with cors-anywhere proxy
+                const playgroundUrl = projectLink 
+                    ? `https://playground.raise.mit.edu/main/?project=https://cors-anywhere.herokuapp.com/${projectLink}`
+                    : "#";
+
+                // Create card HTML matching the existing gallery card style
+                const cardHTML = `
+                    <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img alt="${title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="${imageLink}" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'"/>
+                        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                            <h3 class="text-xl font-bold text-white mb-4">${title}</h3>
+                            <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="${playgroundUrl}" target="_blank">
+                                <span class="material-icons-outlined text-lg">play_arrow</span>
+                                Try me!
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                return cardHTML;
+            }
+
+            // Fetch Google Sheets data and generate cards
             fetch(SHEET_URL)
                 .then(res => res.json())
                 .then(data => {
@@ -190,6 +220,17 @@
                     console.log('Number of entries:', data.length);
                     if (data.length > 0) {
                         console.log('Sample entry:', data[0]);
+                        
+                        // Generate cards for each project
+                        data.forEach(project => {
+                            // Only create card if we have the necessary data
+                            if (project["What is your project title?"] && project.imageLink && project.projectLink) {
+                                const cardHTML = createProjectCard(project);
+                                const tempDiv = document.createElement('div');
+                                tempDiv.innerHTML = cardHTML.trim();
+                                projectsGrid.appendChild(tempDiv.firstElementChild);
+                            }
+                        });
                     }
                 })
                 .catch(err => {
