@@ -1,247 +1,295 @@
-<!DOCTYPE HTML>
-<!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>JC GoAI Project Gallery</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GoAI Poseblocks Project Gallery</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0473ea",
+                        "background-light": "#F9FAFB", // gray-50
+                        "background-dark": "#111827", // gray-900
+                    },
+                    fontFamily: {
+                        display: ["Galano Grotesque", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem", // md
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('fonts/GalanoGrotesqueRegular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('fonts/GalanoGrotesqueMedium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
 
-							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<!-- <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span> -->
-									<span class="symbol"><img src="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png" alt="GoAI Logo" /></span>
-                                    <span class="title">JC GoAI</span>
-								</a>
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('fonts/GalanoGrotesqueSemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('fonts/GalanoGrotesqueBold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
 
-						</div>
-					</header>
+        body {
+            font-family: 'Galano Grotesque', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
+    <div id="root">
+        <header class="bg-background-light dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
+            <div class="container mx-auto px-6 py-4">
+                <nav class="flex justify-between items-center">
+                    <a class="flex items-center gap-2" href="#">
+                        <img src="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png" alt="GoAI Logo" class="h-16 w-auto"/>
+                        <span class="font-bold text-lg text-slate-900 dark:text-white">GoAI Project Gallery</span>
+                    </a>
+                    <!-- <div class="hidden md:flex items-center space-x-8">
+                        <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-300" href="#">About</a>
+                        <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-300" href="#">Curriculum</a>
+                    </div> -->
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="text-center py-20 md:py-32 bg-gradient-to-r from-[#022169] to-[#0473ea]">
+                <div class="container mx-auto px-6">
+                    <div class="w-48 h-48 mx-auto bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center mb-8 shadow-lg">
+                        <img src="img/Output/PNG/EN-Logo/JC-Project_AI-Logo_EN-RGB-01.png" alt="GoAI Logo" class="h-400 w-auto"/>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold font-display text-white dark:text-white leading-tight">
+                        GoAI Poseblocks Project Gallery
+                    </h1>
+                    <p class="mt-4 text-lg text-[#fecf13] dark:text-[#fecf13] max-w-2xl mx-auto">
+                        Go Play / Go Think / Go Make / Go Reflect
+                    </p>
+                </div>
+            </section>
+            <section class="py-16 md:py-24" id="projects">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Explore Projects</h2>
+                    <div class="text-center mb-12">
+                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105" href="https://forms.gle/HAr5AmFzfQDgRuwv7" target="_blank">
+                            <span class="material-icons-outlined text-lg">add_circle_outline</span>
+                            Add yours!
+                        </a>
+                    </div>
+                    <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Dancing Stick Figure GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/hand-spray-paint.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Spray Paint</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/hand-spray-paint.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Circle Drawing GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/be-a-pirate.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Be a Pirate!</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/Pirate%20Face.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Wave Hello GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/eyelash-butterfly.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Eyelash Butterfly</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/EyelashButterfly.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Floating Ghost GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/FingerPuppetShow.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Finger Puppet Show</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/FingerPuppetShow.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Sun with smiley face GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/YayGrr.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Grr / Yay</h3>
+                                    <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/YayGrr.sb3">
+                                        <span class="material-icons-outlined text-lg">play_arrow</span>
+                                        Try me!
+                                    </a>
+                                </div>
+                            </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Colorful bouncing balls GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/ShoulderFriend.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Shoulder Friend</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/ShoulderFriend.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Cat playing with yarn GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/bunnyears.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Bunny Ears</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/dci1mha5acarv2alpfi23/Bunny-Ears.sb3?rlkey=hkxlemq3n9v2nhxtl5qma2lye&st=eoorpk3z&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Growing flower GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/RainbowVolleyball.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Rainbow Volleyball</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/RainbowVolleyball.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Growing flower GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/posturechecker.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Posture Checker</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/lqxroazxucnt2pzefbkna/Slouch.sb3?rlkey=4a8q18wty2y6cbvovatwtz20q&st=wh4res6e&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Growing flower GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/n45i3gd6qzjonupttd28g/catdog.gif?rlkey=gwiqc2vi2cmp6c89w7flzlsp7&st=l4ytwoqt&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Cat or Dog?</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/busz2465ftvgvkcyh9uco/Cat-or-Dog_.sb3?rlkey=1i9b632mlpcpn0a0j8149zveo&st=f4tcqfhj&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                            
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
+                <div class="container mx-auto px-6 py-8 text-center text-slate-500 dark:text-slate-400">
+                    <p>© 2024 GoAI Poseblocks Project Gallery. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+        
+        <script>
+            // Google Sheet import and card generation
+            // NOTE: Sheet permissions must be set to "Anyone with the link can edit" in order for this to work!
+            const SHEET_URL = "https://opensheet.elk.sh/1nyUkE4ZwKG3wHfStOEMgwGjhwRg4tmdCSEBxtBk4xj0/Form%20Responses%201";
+            const projectsGrid = document.getElementById('projects-grid');
 
-				<!-- Menu -->
-					<nav id="menu">
-						<h2>Menu</h2>
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="generic.html">Ipsum veroeros</a></li>
-							<li><a href="generic.html">Tempus etiam</a></li>
-							<li><a href="generic.html">Consequat dolor</a></li>
-							<li><a href="elements.html">Elements</a></li>
-						</ul>
-					</nav>
+            // Placeholder color array - replace with your colors later
+            const cardColors = [
+                '#81b9f4',
+                '#fcc79b',
+                '#82ca9c',
+                '#cde3fb',
+                '#fee6d3',
+                '#d8eddd',
+            ];
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<header>
-                                <h1>GoAI Scratch Project Gallery</h1>
-								<p>Go Play / Go Think / Go Make / Go Reflect</p>
-							</header>
-							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/shydog.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Shy Dog</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/circle-drawing.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Circle Drawing</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/hand-spray-paint.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Hand Spray Paint</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/EmotionJellyfish.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Emotion Jellyfish</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/RainbowVolleyball.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Rainbow Volleyball</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/FingerFoodNinja.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Finger Food Ninja</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/nocorona.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Don't Touch Your Face!</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style3">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/YummyFood.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Yummy Food</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style1">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/CatcherModel.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Catcher Model</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style5">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/WhichBin.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Which Bin?</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style6">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/NoTrash.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>No Trash</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style4">
-									<span class="image">
-									<img src="https://dancingwithai.media.mit.edu/projects/FingerPuppetShow.gif" alt="" />
-									</span>
-									<a href="generic.html">
-									<h2>Finger Puppet Show</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-							</section>
-						</div>
-					</div>
+            // Function to get a random color from the array
+            function getRandomColor() {
+                return cardColors[Math.floor(Math.random() * cardColors.length)];
+            }
 
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-							<section>
-								<h2>Get in touch</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="field half">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="field">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send" class="primary" /></li>
-									</ul>
-								</form>
-							</section>
-							<section>
-								<h2>Follow</h2>
-								<ul class="icons">
-									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
-									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-							</section>
-							<ul class="copyright">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</footer>
+            // Function to create a project card
+            function createProjectCard(project) {
+                const title = project["What is your project title?"] || "Untitled Project";
+                const studentName = project["What's your name?"] || "Student";
+                const projectLink = project.projectLink || "";
+                const randomColor = getRandomColor();
+                
+                // Format the playground URL with cors-anywhere proxy
+                const playgroundUrl = projectLink 
+                    ? `https://playground.raise.mit.edu/main/?project=https://cors-anywhere.herokuapp.com/${projectLink}`
+                    : "#";
 
-			</div>
+                // Create card HTML with colored background instead of image
+                const cardHTML = `
+                    <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="min-height: 300px;">
+                        <div class="w-full h-full transition-transform duration-300 group-hover:scale-110 flex flex-col items-center justify-center p-6 text-center" style="background-color: ${randomColor}; min-height: 300px;">
+                            <h3 class="text-2xl font-bold text-white mb-2">${title}</h3>
+                            <p class="text-white/90 text-lg">${studentName}</p>
+                        </div>
+                        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                            <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="${playgroundUrl}" target="_blank">
+                                <span class="material-icons-outlined text-lg">play_arrow</span>
+                                Try me!
+                            </a>
+                        </div>
+                    </div>
+                `;
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+                return cardHTML;
+            }
 
-	</body>
-</html>
+            // Fetch Google Sheets data and generate cards
+            fetch(SHEET_URL)
+                .then(res => res.json())
+                .then(data => {
+                    console.log('Google Sheet Data:', data);
+                    console.log('Number of entries:', data.length);
+                    if (data.length > 0) {
+                        console.log('Sample entry:', data[0]);
+                        
+                        // Generate cards for each project
+                        data.forEach(project => {
+                            // Only create card if we have the necessary data (title and project link)
+                            if (project["What is your project title?"] && project.projectLink) {
+                                const cardHTML = createProjectCard(project);
+                                const tempDiv = document.createElement('div');
+                                tempDiv.innerHTML = cardHTML.trim();
+                                projectsGrid.appendChild(tempDiv.firstElementChild);
+                            }
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.error('Error loading Google Sheet data:', err);
+                });
+        </script>
+    </body></html>
