@@ -63,9 +63,153 @@
         body {
             font-family: 'Galano Grotesque', sans-serif;
         }
+         .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        position: relative;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .modal-submit {
+        background-color: #007bff;
+        width: 70%;
+        margin: 5px auto;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .modal-content form {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content select {
+  padding: 10px 12px;
+  /* margin: 0 auto;
+  width: 60%; */
+  border-radius: 10px;
+  border: 1.5px solid #E5E7EB;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border 0.15s, box-shadow 0.15s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.15);
+}
+
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #7A7A7A;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.modal-close:hover {
+  background: rgba(0,0,0,0.06);
+  opacity: 0.9;
+}
+
+
+
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
+    <div class="modal" id="submit-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeModalBtn">✕</button>
+  <p><strong style="width:100%">Project Upload</strong></p>
+
+  <form id="projectForm">
+
+    <!-- Lesson -->
+    <label>
+      Lesson
+      <select name="lesson" required>
+        <option value="">Select a lesson…</option>
+        <option value="lesson-5-6">Lesson 5/6</option>
+        <option value="lesson-9-10">Lesson 9/10</option>
+        <option value="lesson-11-12">Lesson 11/12</option>
+      </select>
+    </label>
+
+    <!-- Name -->
+    <label>
+      Your name / team name
+      <input type="text" name="name" placeholder="Miranda" required />
+    </label>
+
+    <!-- Project title -->
+    <label>
+      Project title
+      <input type="text" name="title" placeholder="My Awesome Robot" required />
+    </label>
+
+    <!-- File upload -->
+    <label>
+      Upload project file (.sb3)
+      <input type="file" name="projectFile" accept=".sb3" required />
+    </label>
+
+    <!-- Description -->
+    <label>
+      1-sentence description
+      <input
+        type="text"
+        name="description"
+        maxlength="140"
+        placeholder="Silly emotion robot!"
+        required
+      />
+    </label>
+
+    <!-- Submit -->
+    <button class="modal-submit" id="modal-submit" type="submit">Submit project</button>
+  </form>
+</div>
+
+</div>
     <div id="root">
         <header class="bg-background-light dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
             <div class="container mx-auto px-6 py-4">
@@ -242,14 +386,14 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-                        <a href="lessons-5-6.html" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="gallery.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 5-6</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="lessons-10-12.html" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="lessons.html?lesson=lesson-10-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 10-12</h3>
@@ -272,5 +416,40 @@
         <script>
             // Student projects are now displayed on separate lesson-specific pages
             // This page only shows example projects
+
+            const form = document.getElementById("projectForm");
+            
+            
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault(); // stops page reload
+
+
+                document.getElementById("submit-modal").style.display = "none";
+                const formData = new FormData(form);
+                console.log("form data", formData);
+                console.log(formData.get("name"));
+
+
+
+                const lesson = formData.get("lesson");
+                console.log(lesson);
+                const title = formData.get("title");
+                const description = formData.get("description");
+                const name = formData.get("name");
+
+
+
+                // formData.append("lesson", lesson);
+                // formData.append("name", name);
+                // formData.append("title", title);
+                // formData.append("description", description);
+                // formData.append("projectFile", file); // file must come from an <input type="file">
+
+                const res = await fetch("http://localhost:3000/edit_json", {
+                    method: "POST",
+                    body: formData
+                });
+                
+            })
         </script>
     </body></html>
