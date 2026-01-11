@@ -159,6 +159,9 @@
       const params = new URLSearchParams(window.location.search);
       const LESSON_FILTER = params.get("lesson") || "Lessons 5-6";
 
+      const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+      //const host = "http://localhost:3000"
+
       // Placeholder color array
       const cardColors = [
         "#81b9f4",
@@ -197,7 +200,7 @@
         return cardHTML;
       }
 
-      fetch("http://localhost:3000/get_json", {
+      fetch(`${host}/get_json`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

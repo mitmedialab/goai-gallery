@@ -417,6 +417,9 @@
             // Student projects are now displayed on separate lesson-specific pages
             // This page only shows example projects
 
+            const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+            //const host = "http://localhost:3000"
+
             const form = document.getElementById("projectForm");
             
             
@@ -445,7 +448,7 @@
                 // formData.append("description", description);
                 // formData.append("projectFile", file); // file must come from an <input type="file">
 
-                const res = await fetch("http://localhost:3000/edit_json", {
+                const res = await fetch(`${host}/edit_json`, {
                     method: "POST",
                     body: formData
                 });
