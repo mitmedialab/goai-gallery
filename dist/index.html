@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>GoAI Project Gallery</title>
+    <link rel="icon" type="image/png" href="/goai-gallery/assets/JC-Project_AI-Logo_Mark-RGB-CED9ggZf.png"/>
+    <!-- <link rel="icon" type="image/png" href="img/Output/png/GO.png"/> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0473ea",
+                        "background-light": "#F9FAFB", // gray-50
+                        "background-dark": "#111827", // gray-900
+                    },
+                    fontFamily: {
+                        display: ["Galano Grotesque", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem", // md
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('/goai-gallery/assets/GalanoGrotesqueRegular-DyyNcigU.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('/goai-gallery/assets/GalanoGrotesqueMedium-BVwB6ccU.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('/goai-gallery/assets/GalanoGrotesqueSemiBold-Cpip8ttY.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Galano Grotesque';
+            src: url('/goai-gallery/assets/GalanoGrotesqueBold-CoqAf_zc.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Galano Grotesque', sans-serif;
+        }
+         .modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        position: relative;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        font-size: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .modal-submit {
+        background-color: #007bff;
+        width: 70%;
+        margin: 5px auto;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .modal-content form {
+  display: grid;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content select {
+  padding: 10px 12px;
+  /* margin: 0 auto;
+  width: 60%; */
+  border-radius: 10px;
+  border: 1.5px solid #E5E7EB;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border 0.15s, box-shadow 0.15s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #6C63FF;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.15);
+}
+
+.modal-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #7A7A7A;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.modal-close:hover {
+  background: rgba(0,0,0,0.06);
+  opacity: 0.9;
+}
+
+
+
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
+    <div class="modal" id="submit-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeModalBtn">✕</button>
+  <p><strong style="width:100%">Project Upload</strong></p>
+
+  <form id="projectForm">
+
+    <!-- Lesson -->
+    <label>
+      Lesson
+      <select name="lesson" required>
+        <option value="">Select a lesson…</option>
+        <option value="lesson-5-6">Lesson 5/6</option>
+        <option value="lesson-9-10">Lesson 9/10</option>
+        <option value="lesson-11-12">Lesson 11/12</option>
+      </select>
+    </label>
+
+    <!-- Name -->
+    <label>
+      Your name / team name
+      <input type="text" name="name" placeholder="Miranda" required />
+    </label>
+
+    <!-- Project title -->
+    <label>
+      Project title
+      <input type="text" name="title" placeholder="My Awesome Robot" required />
+    </label>
+
+    <!-- File upload -->
+    <label>
+      Upload project file (.sb3)
+      <input type="file" name="projectFile" accept=".sb3" required />
+    </label>
+
+    <!-- Description -->
+    <label>
+      1-sentence description
+      <input
+        type="text"
+        name="description"
+        maxlength="140"
+        placeholder="Silly emotion robot!"
+        required
+      />
+    </label>
+
+    <!-- Submit -->
+    <button class="modal-submit" id="modal-submit" type="submit">Submit project</button>
+  </form>
+</div>
+
+</div>
+    <div id="root">
+        <header class="bg-background-light dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
+            <div class="container mx-auto px-6 py-4">
+                <nav class="flex justify-between items-center">
+                    <a class="flex items-center gap-2" href="#">
+                        <img src="/goai-gallery/assets/JC-Project_AI-Logo_Mark-RGB-CED9ggZf.png" alt="GoAI Logo" class="h-16 w-auto"/>
+                        <span class="font-bold text-lg text-slate-900 dark:text-white">GoAI Project Gallery</span>
+                    </a>
+                    <!-- <div class="hidden md:flex items-center space-x-8">
+                        <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-300" href="#">About</a>
+                        <a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors duration-300" href="#">Curriculum</a>
+                    </div> -->
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="text-center py-20 md:py-32 bg-gradient-to-r from-[#022169] to-[#0473ea]">
+                <div class="container mx-auto px-6">
+                    <div class="w-48 h-48 mx-auto bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center mb-8 shadow-lg">
+                        <img src="/goai-gallery/assets/JC-Project_AI-Logo_EN-RGB-01-CMW-zaVr.png" alt="GoAI Logo" class="h-400 w-auto"/>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold font-display text-white dark:text-white leading-tight">
+                        GoAI Project Gallery
+                    </h1>
+                    <p class="mt-4 text-lg text-[#fecf13] dark:text-[#fecf13] max-w-2xl mx-auto">
+                        Go Play / Go Think / Go Make / Go Reflect
+                    </p>
+                </div>
+            </section>
+            <section class="py-16 md:py-24" id="projects">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900 dark:text-white">Example Projects</h2>
+                    <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Dancing Stick Figure GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/hand-spray-paint.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Spray Paint</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/hand-spray-paint.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Don't Touch Your Face GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/nocorona.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Don't Touch Your Face!</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/vliuaonv1u22r3qniqslv/Don-t-Touch-Your-Face.sb3?rlkey=4k0jqk31mfj0787bumgwjyfvn&st=hbwark59&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Circle Drawing GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/be-a-pirate.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Be a Pirate!</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/Pirate%20Face.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Wave Hello GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/eyelash-butterfly.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Eyelash Butterfly</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/EyelashButterfly.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Floating Ghost GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/FingerPuppetShow.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Finger Puppet Show</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/FingerPuppetShow.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Sun with smiley face GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/YayGrr.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Grr / Yay</h3>
+                                    <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/YayGrr.sb3">
+                                        <span class="material-icons-outlined text-lg">play_arrow</span>
+                                        Try me!
+                                    </a>
+                                </div>
+                            </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Colorful bouncing balls GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/ShoulderFriend.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Shoulder Friend</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/ShoulderFriend.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Cat playing with yarn GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/bunnyears.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Bunny Ears</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/dwwg2qcez5egverfai91v/BunnyEars.sb3?rlkey=7aalf2l7q8trqwuzxgl5niiqk&st=iunfqh15&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Growing flower GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/RainbowVolleyball.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Rainbow Volleyball</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://dancingwithai.media.mit.edu/projects/RainbowVolleyball.sb3">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Growing flower GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://dancingwithai.media.mit.edu/projects/posturechecker.gif"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Posture Checker</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/lqxroazxucnt2pzefbkna/Slouch.sb3?rlkey=4a8q18wty2y6cbvovatwtz20q&st=wh4res6e&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Cat or Dog GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/n45i3gd6qzjonupttd28g/catdog.gif?rlkey=gwiqc2vi2cmp6c89w7flzlsp7&st=l4ytwoqt&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Cat or Dog?</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/ytlu2d9im3k99qhhu6eyq/CatDog.sb3?rlkey=b0ud8lrbkehqos1x59i56364f&st=c8j5k3ru&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Silly Glasses GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/xp48s4x53g34kkrwi09r9/sillyGlasses.gif?rlkey=x6etswxharr6dodza41hhkrl7&st=b407v60s&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Silly Glasses</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/main/?project=https://www.dropbox.com/scl/fi/a2f8pyane5f4ich7fhjad/sillyGlasses.sb3?rlkey=gui7w4yzhajs4fr47htrnaotd&st=y6falcm2&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Emotionbot2000 GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/n2i6p5xawzhhn43kmmgr5/emotionbot2000.gif?rlkey=i0oqsf1wx9jitcfntm7tgj280&st=lghsm34f&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Emotionbot2000</h3>
+                                <!-- NOTE: using chat-extension branch for now since genAI blocks are not yet in main branch -->
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/chat-extension/?project=https://www.dropbox.com/scl/fi/6f95a9sprw55no0x5g8t3/Emotionbot2000.sb3?rlkey=8bpee9losor8ahi691dkvoav6&st=x4z25pcf&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30" id="student-projects">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Student Projects</h2>
+                    <div class="text-center mb-12">
+                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105" href="https://forms.gle/HAr5AmFzfQDgRuwv7" target="_blank">
+                            <span class="material-icons-outlined text-lg">add_circle_outline</span>
+                            Add yours!
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                        <a href="/goai-gallery/gallery.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
+                                <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
+                                <h3 class="text-3xl font-bold text-white mb-2">Lessons 5-6</h3>
+                                <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
+                            </div>
+                        </a>
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-10-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
+                                <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
+                                <h3 class="text-3xl font-bold text-white mb-2">Lessons 10-12</h3>
+                                <!-- <p class="text-white/90 text-lg">View student projects from Lessons 10-12</p> -->
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            </main>
+            <footer class="bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
+                <div class="container mx-auto px-6 py-8">
+                    <div class="flex items-center justify-start">
+                        <img src="/goai-gallery/assets/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray-D2JYKGQT.png" alt="RAISE Logo" class="h-12 md:h-16 w-auto object-contain"/>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        
+        <script>
+            // Student projects are now displayed on separate lesson-specific pages
+            // This page only shows example projects
+
+            const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+            //const host = "http://localhost:3000"
+
+            const form = document.getElementById("projectForm");
+            
+            
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault(); // stops page reload
+
+
+                document.getElementById("submit-modal").style.display = "none";
+                const formData = new FormData(form);
+                console.log("form data", formData);
+                console.log(formData.get("name"));
+
+
+
+                const lesson = formData.get("lesson");
+                console.log(lesson);
+                const title = formData.get("title");
+                const description = formData.get("description");
+                const name = formData.get("name");
+
+
+
+                // formData.append("lesson", lesson);
+                // formData.append("name", name);
+                // formData.append("title", title);
+                // formData.append("description", description);
+                // formData.append("projectFile", file); // file must come from an <input type="file">
+
+                const res = await fetch(`${host}/edit_json`, {
+                    method: "POST",
+                    body: formData
+                });
+                
+            })
+        </script>
+    </body></html>
