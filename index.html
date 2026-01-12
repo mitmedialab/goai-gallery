@@ -146,6 +146,10 @@
   transition: background 0.15s, opacity 0.15s;
 }
 
+#add-project {
+    cursor: pointer;
+}
+
 .modal-close:hover {
   background: rgba(0,0,0,0.06);
   opacity: 0.9;
@@ -156,7 +160,7 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
-    <div class="modal" id="submit-modal">
+    <div class="modal" id="submit-modal" style="display:none">
     <div class="modal-content">
         <button class="modal-close" id="closeModalBtn">✕</button>
   <p><strong style="width:100%">Project Upload</strong></p>
@@ -379,8 +383,8 @@
             <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30" id="student-projects">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Student Projects</h2>
-                    <div class="text-center mb-12">
-                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105" href="https://forms.gle/HAr5AmFzfQDgRuwv7" target="_blank">
+                    <div id="add-project" class="text-center mb-12">
+                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105">
                             <span class="material-icons-outlined text-lg">add_circle_outline</span>
                             Add yours!
                         </a>
@@ -416,6 +420,14 @@
         <script>
             // Student projects are now displayed on separate lesson-specific pages
             // This page only shows example projects
+
+            document.getElementById("add-project").addEventListener('click', () => {
+                document.getElementById('submit-modal').style.display="flex";
+            })
+
+            document.getElementById("closeModalBtn").addEventListener('click', () => {
+                document.getElementById('submit-modal').style.display="none";
+            })
 
             const host = "https://goai-backend-3309c298eb92.herokuapp.com";
             //const host = "http://localhost:3000"
