@@ -83,7 +83,7 @@
           <nav class="flex justify-between items-center">
             <a class="flex items-center gap-2" href="index.html">
               <img
-                src="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png"
+                src="/goai-gallery/img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png"
                 alt="GoAI Logo"
                 class="h-16 w-auto"
               />
@@ -100,10 +100,9 @@
         >
           <div class="container mx-auto px-6">
             <h1
+              id="lesson-header"
               class="text-4xl md:text-6xl font-bold font-display text-white dark:text-white leading-tight"
-            >
-              Lessons 5-6 Projects
-            </h1>
+            ></h1>
             <!-- <p class="mt-4 text-lg text-[#fecf13] dark:text-[#fecf13] max-w-2xl mx-auto">
                         Student projects from Lessons 5-6
                     </p> -->
@@ -153,14 +152,25 @@
     </div>
 
     <script>
+      const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+      //const host = "http://localhost:3000"
+
       // Google Sheet import and card generation
       const projectsGrid = document.getElementById("projects-grid");
       const noProjects = document.getElementById("no-projects");
       const params = new URLSearchParams(window.location.search);
       const LESSON_FILTER = params.get("lesson") || "Lessons 5-6";
 
-      const host = "https://goai-backend-3309c298eb92.herokuapp.com";
-      //const host = "http://localhost:3000"
+      const header = document.getElementById("lesson-header");
+      if (LESSON_FILTER == "lesson-5-6") {
+        header.innerText = "Lessons 5-6";
+      } else if (LESSON_FILTER == "lesson-9-10") {
+        header.innerText = "Lessons 9-10";
+      } else if (LESSON_FILTER == "lesson-11-12") {
+        header.innerText = "Lessons 11-12";
+      } else {
+        window.location.replace("/");
+      }
 
       // Placeholder color array
       const cardColors = [
