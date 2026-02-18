@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -129,9 +129,10 @@
               <!-- Projects will be loaded here -->
             </div>
             <div id="no-projects" class="text-center py-12 hidden">
-              <p class="text-xl text-slate-600 dark:text-slate-400">
-                No projects found for Lessons 5-6 yet. Check back soon!
-              </p>
+              <p
+                class="text-xl text-slate-600 dark:text-slate-400"
+                id="no-project-description"
+              ></p>
             </div>
           </div>
         </section>
@@ -162,12 +163,21 @@
       const LESSON_FILTER = params.get("lesson") || "Lessons 5-6";
 
       const header = document.getElementById("lesson-header");
+      const noProjectDescription = document.getElementById(
+        "no-project-description",
+      );
       if (LESSON_FILTER == "lesson-5-6") {
         header.innerText = "Lessons 5-6";
+        noProjectDescription.innerText =
+          "No projects found for Lessons 5-6 yet. Check back soon!";
       } else if (LESSON_FILTER == "lesson-9-10") {
         header.innerText = "Lessons 9-10";
+        noProjectDescription.innerText =
+          "No projects found for Lessons 9-10 yet. Check back soon!";
       } else if (LESSON_FILTER == "lesson-11-12") {
         header.innerText = "Lessons 11-12";
+        noProjectDescription.innerText =
+          "No projects found for Lessons 11-12 yet. Check back soon!";
       } else {
         window.location.replace("/");
       }
