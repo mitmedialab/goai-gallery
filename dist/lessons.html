@@ -83,7 +83,7 @@
           <nav class="flex justify-between items-center">
             <a class="flex items-center gap-2" href="index.html">
               <img
-                src="/goai-gallery/assets/JC-Project_AI-Logo_Mark-RGB-CED9ggZf.png"
+                src="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png"
                 alt="GoAI Logo"
                 class="h-16 w-auto"
               />
@@ -100,9 +100,10 @@
         >
           <div class="container mx-auto px-6">
             <h1
-              id="lesson-header"
               class="text-4xl md:text-6xl font-bold font-display text-white dark:text-white leading-tight"
-            ></h1>
+            >
+              Lessons 5-6 Projects
+            </h1>
             <!-- <p class="mt-4 text-lg text-[#fecf13] dark:text-[#fecf13] max-w-2xl mx-auto">
                         Student projects from Lessons 5-6
                     </p> -->
@@ -110,7 +111,7 @@
         </section>
         <section class="py-16 md:py-24" id="projects">
           <div class="container mx-auto px-6">
-            <!-- <div class="text-center mb-12">
+            <div class="text-center mb-12">
               <a
                 class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105"
                 href="https://forms.gle/HAr5AmFzfQDgRuwv7"
@@ -121,7 +122,7 @@
                 >
                 Add yours!
               </a>
-            </div> -->
+            </div>
             <div
               id="projects-grid"
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
@@ -129,10 +130,9 @@
               <!-- Projects will be loaded here -->
             </div>
             <div id="no-projects" class="text-center py-12 hidden">
-              <p
-                class="text-xl text-slate-600 dark:text-slate-400"
-                id="no-project-description"
-              ></p>
+              <p class="text-xl text-slate-600 dark:text-slate-400">
+                No projects found for Lessons 5-6 yet. Check back soon!
+              </p>
             </div>
           </div>
         </section>
@@ -143,7 +143,7 @@
         <div class="container mx-auto px-6 py-8">
           <div class="flex items-center justify-start">
             <img
-              src="/goai-gallery/assets/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray-D2JYKGQT.png"
+              src="img/other_logos/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray.png"
               alt="RAISE Logo"
               class="h-12 md:h-16 w-auto object-contain"
             />
@@ -153,32 +153,11 @@
     </div>
 
     <script>
-      const host = "https://goai-backend-3309c298eb92.herokuapp.com";
-      //const host = "http://localhost:3000"
-
+      const params = new URLSearchParams(window.location.search);
       // Google Sheet import and card generation
       const projectsGrid = document.getElementById("projects-grid");
       const noProjects = document.getElementById("no-projects");
-      const params = new URLSearchParams(window.location.search);
       const LESSON_FILTER = params.get("lesson") || "Lessons 5-6";
-      const CLASS_FILTER = params.get("class") || "Teacher-1";
-
-      const header = document.getElementById("lesson-header");
-      const noProjectDescription = document.getElementById(
-        "no-project-description",
-      );
-      if (LESSON_FILTER == "lesson-5-6") {
-        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 5-6";
-        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 5-6 yet. Check back soon!`;
-      } else if (LESSON_FILTER == "lesson-9-10") {
-        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 9-10";
-        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 9-10 yet. Check back soon!`;
-      } else if (LESSON_FILTER == "lesson-11-12") {
-        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 11-12";
-        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 11-12 yet. Check back soon!`;
-      } else {
-        window.location.replace("/");
-      }
 
       // Placeholder color array
       const cardColors = [
@@ -195,38 +174,40 @@
         return cardColors[Math.floor(Math.random() * cardColors.length)];
       }
 
+      //const frontendHost = "https://mitmedialab.github.io/goai-gallery";
+      const frontendHost = "http://localhost:5173/goai-gallery";
+
       // Function to create a project card
-      function createProjectCard(title, studentName, downloadUrl) {
-        const randomColor = getRandomColor();
+      function createProjectCard(className) {
+        const url = new URL(`${frontendHost}/gallery.html`);
+        url.searchParams.set("lesson", LESSON_FILTER);
+        url.searchParams.set("class", className);
+        console.log("url", url);
 
         // Create card HTML with colored background instead of image
         const cardHTML = `
-                <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" style="min-height: 300px;">
-                    <div class="w-full h-full transition-transform duration-300 group-hover:scale-110 flex flex-col items-center justify-center p-6 text-center" style="background-color: ${randomColor}; min-height: 300px;">
-                        <h3 class="text-2xl font-bold text-white mb-2">${title}</h3>
-                        <p class="text-white/90 text-lg">${studentName}</p>
-                    </div>
-                    <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
-                        <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/goai/?project=${downloadUrl}" target="_blank">
-                            <span class="material-icons-outlined text-lg">download</span>
-                            View Project
+                <a href="${url}"" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
+                                <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
+                                <h3 class="text-3xl font-bold text-white mb-2">${className.replace("-", " ")}</h3>
+                                <!-- <p class="text-white/90 text-lg">View student projects from ${className.replace("-", " ")}</p> -->
+                            </div>
                         </a>
-                    </div>
-                </div>
             `;
 
         return cardHTML;
       }
 
-      fetch(`${host}/get_json`, {
+      const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+      //const host = "http://localhost:3000"
+
+      // Fetch Google Sheets data and generate cards
+      fetch(`${host}/folders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          className: CLASS_FILTER,
-          lesson: LESSON_FILTER,
-        }),
+        body: JSON.stringify({ path: `/GoAI-Gallery/${LESSON_FILTER}` }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -234,9 +215,8 @@
           let projectCount = 0;
 
           // Filter and generate cards for each project
-          for (let entry of data) {
-            const { title, name, downloadUrl } = entry;
-            const cardHTML = createProjectCard(title, name, downloadUrl);
+          for (let className of data.folders) {
+            const cardHTML = createProjectCard(className);
             const tempDiv = document.createElement("div");
             tempDiv.innerHTML = cardHTML.trim();
             projectsGrid.appendChild(tempDiv.firstElementChild);

@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>GoAI Project Gallery</title>
-    <link rel="icon" type="image/png" href="/goai-gallery/assets/JC-Project_AI-Logo_Mark-RGB-CED9ggZf.png"/>
+    <link rel="icon" type="image/png" href="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png"/>
     <!-- <link rel="icon" type="image/png" href="img/Output/png/GO.png"/> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
@@ -30,7 +30,7 @@
     <style>
         @font-face {
             font-family: 'Galano Grotesque';
-            src: url('/goai-gallery/assets/GalanoGrotesqueRegular-DyyNcigU.otf') format('opentype');
+            src: url('fonts/GalanoGrotesqueRegular.otf') format('opentype');
             font-weight: 400;
             font-style: normal;
             font-display: swap;
@@ -38,7 +38,7 @@
 
         @font-face {
             font-family: 'Galano Grotesque';
-            src: url('/goai-gallery/assets/GalanoGrotesqueMedium-BVwB6ccU.otf') format('opentype');
+            src: url('fonts/GalanoGrotesqueMedium.otf') format('opentype');
             font-weight: 500;
             font-style: normal;
             font-display: swap;
@@ -46,7 +46,7 @@
 
         @font-face {
             font-family: 'Galano Grotesque';
-            src: url('/goai-gallery/assets/GalanoGrotesqueSemiBold-Cpip8ttY.otf') format('opentype');
+            src: url('fonts/GalanoGrotesqueSemiBold.otf') format('opentype');
             font-weight: 600;
             font-style: normal;
             font-display: swap;
@@ -54,7 +54,7 @@
 
         @font-face {
             font-family: 'Galano Grotesque';
-            src: url('/goai-gallery/assets/GalanoGrotesqueBold-CoqAf_zc.otf') format('opentype');
+            src: url('fonts/GalanoGrotesqueBold.otf') format('opentype');
             font-weight: 700;
             font-style: normal;
             font-display: swap;
@@ -146,6 +146,10 @@
   transition: background 0.15s, opacity 0.15s;
 }
 
+#add-project {
+    cursor: pointer;
+}
+
 .modal-close:hover {
   background: rgba(0,0,0,0.06);
   opacity: 0.9;
@@ -156,12 +160,22 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
-    <div class="modal" id="submit-modal">
+    <div class="modal" id="submit-modal" style="display:none">
     <div class="modal-content">
         <button class="modal-close" id="closeModalBtn">✕</button>
   <p><strong style="width:100%">Project Upload</strong></p>
 
   <form id="projectForm">
+
+    <label>
+      Teacher
+      <select name="className" required>
+        <option value="">Select a class...</option>
+        <option value="Teacher-1">Teacher 1</option>
+        <option value="Teacher-2">Teacher 2</option>
+        <option value="Teacher-3">Teacher 3</option>
+      </select>
+    </label>
 
     <!-- Lesson -->
     <label>
@@ -173,6 +187,8 @@
         <option value="lesson-11-12">Lesson 11/12</option>
       </select>
     </label>
+
+    
 
     <!-- Name -->
     <label>
@@ -215,7 +231,7 @@
             <div class="container mx-auto px-6 py-4">
                 <nav class="flex justify-between items-center">
                     <a class="flex items-center gap-2" href="#">
-                        <img src="/goai-gallery/assets/JC-Project_AI-Logo_Mark-RGB-CED9ggZf.png" alt="GoAI Logo" class="h-16 w-auto"/>
+                        <img src="img/Output/PNG/Logo_Mark/JC-Project_AI-Logo_Mark-RGB.png" alt="GoAI Logo" class="h-16 w-auto"/>
                         <span class="font-bold text-lg text-slate-900 dark:text-white">GoAI Project Gallery</span>
                     </a>
                     <!-- <div class="hidden md:flex items-center space-x-8">
@@ -229,7 +245,7 @@
             <section class="text-center py-20 md:py-32 bg-gradient-to-r from-[#022169] to-[#0473ea]">
                 <div class="container mx-auto px-6">
                     <div class="w-48 h-48 mx-auto bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center mb-8 shadow-lg">
-                        <img src="/goai-gallery/assets/JC-Project_AI-Logo_EN-RGB-01-CMW-zaVr.png" alt="GoAI Logo" class="h-400 w-auto"/>
+                        <img src="img/Output/PNG/EN-Logo/JC-Project_AI-Logo_EN-RGB-01.png" alt="GoAI Logo" class="h-400 w-auto"/>
                     </div>
                     <h1 class="text-4xl md:text-6xl font-bold font-display text-white dark:text-white leading-tight">
                         GoAI Project Gallery
@@ -374,29 +390,66 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Princess Handshake GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/7ht2glcotsji61cgfcb75/Princess_handshake.gif?rlkey=9oj3w4pjnaptz0q004sk1fpsg&st=wp31mugp&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Princess Handshake</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/goai/?project=https://www.dropbox.com/scl/fi/a96kaik9vfrbn5qwqpltz/Princess_handshake.sb3?rlkey=ojrq2n0w4p6jdey2k2rh9wfu4&st=59yz6rkl&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Face Detection GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/bv5swafppzbxxiija7mlf/FaceDetection.gif?rlkey=3adv16j07tksrxsvsecppk98l&st=uqz3fqg0&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Face Detection</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/goai/?project=https://www.dropbox.com/scl/fi/g38aqijdnl4d6a5cz7d4a/FaceDetection.sb3?rlkey=mko5ymioldip146lqry7v6khf&st=36cf0p68&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <img alt="Chatty the Chatbot GIF" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://www.dropbox.com/scl/fi/7029kjdc1te0zl5tzo8vs/chatbot_gifonline-video-cutter.com-ezgif.com-optimize.gif?rlkey=4zncasqg3dutp3agylgjvdzq0&st=6pwa4zj2&raw=1"/>
+                            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm p-4 text-center">
+                                <h3 class="text-xl font-bold text-white mb-4">Chatty the Chatbot</h3>
+                                <a class="bg-primary text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105 flex items-center gap-2" href="https://playground.raise.mit.edu/goai/?project=https://www.dropbox.com/scl/fi/3pv34vrd9467lj67wgv65/Chatty_the_chatbot-4.sb3?rlkey=ctzwc621gtv0g5ces22bq8sv1&st=u2f06gz2&dl=0">
+                                    <span class="material-icons-outlined text-lg">play_arrow</span>
+                                    Try me!
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </section>
             <section class="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/30" id="student-projects">
                 <div class="container mx-auto px-6">
                     <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Student Projects</h2>
-                    <div class="text-center mb-12">
-                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105" href="https://forms.gle/HAr5AmFzfQDgRuwv7" target="_blank">
+                    <div id="add-project" class="text-center mb-12">
+                        <a class="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-[#0363d4] transition-all duration-300 transform hover:scale-105">
                             <span class="material-icons-outlined text-lg">add_circle_outline</span>
                             Add yours!
                         </a>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-                        <a href="/goai-gallery/gallery.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 5-6</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="/goai-gallery/lessons.html?lesson=lesson-10-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-9-10" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
+                                <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
+                                <h3 class="text-3xl font-bold text-white mb-2">Lessons 9-10</h3>
+                                <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
+                            </div>
+                        </a>
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-11-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
-                                <h3 class="text-3xl font-bold text-white mb-2">Lessons 10-12</h3>
+                                <h3 class="text-3xl font-bold text-white mb-2">Lessons 11-12</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 10-12</p> -->
                             </div>
                         </a>
@@ -407,7 +460,7 @@
             <footer class="bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
                 <div class="container mx-auto px-6 py-8">
                     <div class="flex items-center justify-start">
-                        <img src="/goai-gallery/assets/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray-D2JYKGQT.png" alt="RAISE Logo" class="h-12 md:h-16 w-auto object-contain"/>
+                        <img src="img/other_logos/RAISE_sub-brand_lockup_two-level_rgb_black-and-silver-gray.png" alt="RAISE Logo" class="h-12 md:h-16 w-auto object-contain"/>
                     </div>
                 </div>
             </footer>
@@ -417,10 +470,18 @@
             // Student projects are now displayed on separate lesson-specific pages
             // This page only shows example projects
 
+            document.getElementById("add-project").addEventListener('click', () => {
+                document.getElementById('submit-modal').style.display="flex";
+            })
+
+            document.getElementById("closeModalBtn").addEventListener('click', () => {
+                document.getElementById('submit-modal').style.display="none";
+            })
+
             const host = "https://goai-backend-3309c298eb92.herokuapp.com";
             //const host = "http://localhost:3000"
 
-            const form = document.getElementById("projectForm");
+            const form = document.getElementById("projectForm"); 
             
             
             form.addEventListener("submit", async (e) => {
@@ -435,6 +496,7 @@
 
 
                 const lesson = formData.get("lesson");
+                const className = formData.get("class");
                 console.log(lesson);
                 const title = formData.get("title");
                 const description = formData.get("description");

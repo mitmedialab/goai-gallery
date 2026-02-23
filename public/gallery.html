@@ -161,23 +161,21 @@
       const noProjects = document.getElementById("no-projects");
       const params = new URLSearchParams(window.location.search);
       const LESSON_FILTER = params.get("lesson") || "Lessons 5-6";
+      const CLASS_FILTER = params.get("class") || "Teacher-1";
 
       const header = document.getElementById("lesson-header");
       const noProjectDescription = document.getElementById(
         "no-project-description",
       );
       if (LESSON_FILTER == "lesson-5-6") {
-        header.innerText = "Lessons 5-6";
-        noProjectDescription.innerText =
-          "No projects found for Lessons 5-6 yet. Check back soon!";
+        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 5-6";
+        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 5-6 yet. Check back soon!`;
       } else if (LESSON_FILTER == "lesson-9-10") {
-        header.innerText = "Lessons 9-10";
-        noProjectDescription.innerText =
-          "No projects found for Lessons 9-10 yet. Check back soon!";
+        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 9-10";
+        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 9-10 yet. Check back soon!`;
       } else if (LESSON_FILTER == "lesson-11-12") {
-        header.innerText = "Lessons 11-12";
-        noProjectDescription.innerText =
-          "No projects found for Lessons 11-12 yet. Check back soon!";
+        header.innerText = CLASS_FILTER.replace("-", " ") + ": Lessons 11-12";
+        noProjectDescription.innerText = `No projects found for ${CLASS_FILTER.replace("-", " ")} Lessons 11-12 yet. Check back soon!`;
       } else {
         window.location.replace("/");
       }
@@ -225,7 +223,10 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ lesson: LESSON_FILTER }),
+        body: JSON.stringify({
+          className: CLASS_FILTER,
+          lesson: LESSON_FILTER,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {

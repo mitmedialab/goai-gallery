@@ -167,6 +167,16 @@
 
   <form id="projectForm">
 
+    <label>
+      Teacher
+      <select name="className" required>
+        <option value="">Select a class...</option>
+        <option value="Teacher-1">Teacher 1</option>
+        <option value="Teacher-2">Teacher 2</option>
+        <option value="Teacher-3">Teacher 3</option>
+      </select>
+    </label>
+
     <!-- Lesson -->
     <label>
       Lesson
@@ -177,6 +187,8 @@
         <option value="lesson-11-12">Lesson 11/12</option>
       </select>
     </label>
+
+    
 
     <!-- Name -->
     <label>
@@ -420,21 +432,21 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-                        <a href="/goai-gallery/gallery.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 5-6</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="/goai-gallery/gallery.html?lesson=lesson-9-10" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-9-10" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 9-10</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="/goai-gallery/gallery.html?lesson=lesson-11-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a href="/goai-gallery/lessons.html?lesson=lesson-11-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 11-12</h3>
@@ -484,6 +496,7 @@
 
 
                 const lesson = formData.get("lesson");
+                const className = formData.get("class");
                 console.log(lesson);
                 const title = formData.get("title");
                 const description = formData.get("description");
