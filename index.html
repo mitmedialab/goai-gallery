@@ -167,16 +167,6 @@
 
   <form id="projectForm">
 
-    <label>
-      Teacher
-      <select name="className" required>
-        <option value="">Select a class...</option>
-        <option value="Teacher-1">Teacher 1</option>
-        <option value="Teacher-2">Teacher 2</option>
-        <option value="Teacher-3">Teacher 3</option>
-      </select>
-    </label>
-
     <!-- Lesson -->
     <label>
       Lesson
@@ -432,21 +422,21 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-                        <a href="/goai-gallery/lessons.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a id="lesson-5-6" href="/goai-gallery/lessons.html?lesson=lesson-5-6" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 5-6</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="/goai-gallery/lessons.html?lesson=lesson-9-10" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a id="lesson-9-10" href="/goai-gallery/gallery.html?lesson=lesson-9-10" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-primary to-[#0363d4] p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 9-10</h3>
                                 <!-- <p class="text-white/90 text-lg">View student projects from Lessons 5-6</p> -->
                             </div>
                         </a>
-                        <a href="/goai-gallery/lessons.html?lesson=lesson-11-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <a id="lesson-11-12" href="/goai-gallery/gallery.html?lesson=lesson-11-12" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <div class="bg-gradient-to-br from-[#0363d4] to-primary p-12 text-center min-h-[300px] flex flex-col items-center justify-center">
                                 <span class="material-icons-outlined text-6xl text-white mb-4">school</span>
                                 <h3 class="text-3xl font-bold text-white mb-2">Lessons 11-12</h3>
@@ -467,54 +457,69 @@
         </div>
         
         <script>
-            // Student projects are now displayed on separate lesson-specific pages
-            // This page only shows example projects
-
-            document.getElementById("add-project").addEventListener('click', () => {
-                document.getElementById('submit-modal').style.display="flex";
-            })
-
-            document.getElementById("closeModalBtn").addEventListener('click', () => {
-                document.getElementById('submit-modal').style.display="none";
-            })
-
-            const host = "https://goai-backend-3309c298eb92.herokuapp.com";
-            //const host = "http://localhost:3000"
-
-            const form = document.getElementById("projectForm"); 
-            
-            
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault(); // stops page reload
-
-
-                document.getElementById("submit-modal").style.display = "none";
-                const formData = new FormData(form);
-                console.log("form data", formData);
-                console.log(formData.get("name"));
-
-
-
-                const lesson = formData.get("lesson");
-                const className = formData.get("class");
-                console.log(lesson);
-                const title = formData.get("title");
-                const description = formData.get("description");
-                const name = formData.get("name");
-
-
-
-                // formData.append("lesson", lesson);
-                // formData.append("name", name);
-                // formData.append("title", title);
-                // formData.append("description", description);
-                // formData.append("projectFile", file); // file must come from an <input type="file">
-
-                const res = await fetch(`${host}/edit_json`, {
-                    method: "POST",
-                    body: formData
-                });
+            document.querySelectorAll('a[href="#"]').forEach((link) => {
+                const className = new URLSearchParams(window.location.search).get( "class");
+                link.href = "/goai-gallery/index.html?class=" + className;
+            });
+            const params = new URLSearchParams(window.location.search);
+            const CLASS_FILTER = params.get("class") || "none";
+            if (CLASS_FILTER == "none") {
+                document.getElementById("student-projects").innerHTML = `<h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Please set teacher!</h2>`
+            } else {
+                // Student projects are now displayed on separate lesson-specific pages
+                // This page only shows example projects
+                const lessonLinks = [document.getElementById("lesson-5-6"), document.getElementById("lesson-9-10"), document.getElementById("lesson-11-12")]
+                for (const link of lessonLinks) {
+                    const url = new URL(link.getAttribute("href"), window.location.origin)
+                    url.searchParams.set("class", CLASS_FILTER);
+                    link.setAttribute("href", url.toString());
+                }
                 
-            })
+
+                document.getElementById("add-project").addEventListener('click', () => {
+                    document.getElementById('submit-modal').style.display="flex";
+                })
+
+                document.getElementById("closeModalBtn").addEventListener('click', () => {
+                    document.getElementById('submit-modal').style.display="none";
+                })
+
+                const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+                //const host = "http://localhost:3000"
+
+                const form = document.getElementById("projectForm"); 
+                
+                
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault(); // stops page reload
+
+
+                    document.getElementById("submit-modal").style.display = "none";
+                    const formData = new FormData(form);
+
+
+
+                    const lesson = formData.get("lesson");
+                    formData.set("className", CLASS_FILTER)
+                    const title = formData.get("title");
+                    const description = formData.get("description");
+                    const name = formData.get("name");
+
+
+
+                    // formData.append("lesson", lesson);
+                    // formData.append("name", name);
+                    // formData.append("title", title);
+                    // formData.append("description", description);
+                    // formData.append("projectFile", file); // file must come from an <input type="file">
+
+                    const res = await fetch(`${host}/edit_json`, {
+                        method: "POST",
+                        body: formData
+                    });
+                    
+                })
+            }
+            
         </script>
     </body></html>
