@@ -463,63 +463,123 @@
             });
             const params = new URLSearchParams(window.location.search);
             const CLASS_FILTER = params.get("class") || "none";
-            if (CLASS_FILTER == "none") {
-                document.getElementById("student-projects").innerHTML = `<h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-900 dark:text-white">Please set teacher!</h2>`
-            } else {
-                // Student projects are now displayed on separate lesson-specific pages
-                // This page only shows example projects
-                const lessonLinks = [document.getElementById("lesson-5-6"), document.getElementById("lesson-9-10"), document.getElementById("lesson-11-12")]
-                for (const link of lessonLinks) {
-                    const url = new URL(link.getAttribute("href"), window.location.origin)
-                    url.searchParams.set("class", CLASS_FILTER);
-                    link.setAttribute("href", url.toString());
+
+            const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+            //const host = "http://localhost:3000"
+
+            let teacherExists;
+
+            fetch(`${host}/folder_exists`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                    body: JSON.stringify({
+                    className: CLASS_FILTER,
+                }),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                teacherExists = data.exists;
+                if (CLASS_FILTER == "none") {
+                    teacherExists = false;
                 }
-                
+                if (teacherExists === false) {
+                    document.getElementById("student-projects").innerHTML = `
+                        <div class="flex flex-col items-center gap-4">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-slate-900 dark:text-white">
+                            Please set your class name!
+                        </h2>
 
-                document.getElementById("add-project").addEventListener('click', () => {
-                    document.getElementById('submit-modal').style.display="flex";
-                })
+                        <p class="text-red-500 text-center">
+                            No class was found with that name.
+                        </p>
 
-                document.getElementById("closeModalBtn").addEventListener('click', () => {
-                    document.getElementById('submit-modal').style.display="none";
-                })
+                        <!-- Flex row for input + button -->
+                        <div class="flex gap-2">
+                            <input 
+                            id="teacher-input"
+                            type="text" 
+                            placeholder="Enter class name"
+                            class="px-4 py-2 border rounded-lg w-64 text-black"
+                            />
 
-                const host = "https://goai-backend-3309c298eb92.herokuapp.com";
-                //const host = "http://localhost:3000"
+                            <button 
+                            id="save-teacher"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                            >
+                            Set
+                            </button>
+                        </div>
+                        </div>
+                    `;
 
-                const form = document.getElementById("projectForm"); 
-                
-                
-                form.addEventListener("submit", async (e) => {
-                    e.preventDefault(); // stops page reload
+                    document.getElementById("save-teacher").onclick = async () => {
+                        let teacher = (document.getElementById("teacher-input")).value.trim();
 
-
-                    document.getElementById("submit-modal").style.display = "none";
-                    const formData = new FormData(form);
-
-
-
-                    const lesson = formData.get("lesson");
-                    formData.set("className", CLASS_FILTER)
-                    const title = formData.get("title");
-                    const description = formData.get("description");
-                    const name = formData.get("name");
-
-
-
-                    // formData.append("lesson", lesson);
-                    // formData.append("name", name);
-                    // formData.append("title", title);
-                    // formData.append("description", description);
-                    // formData.append("projectFile", file); // file must come from an <input type="file">
-
-                    const res = await fetch(`${host}/edit_json`, {
-                        method: "POST",
-                        body: formData
-                    });
+                        if (!teacher) {
+                            alert("Please enter a class name");
+                            return;
+                        }
+                        teacher = teacher.replace(/\s+/g, '-'); 
+                        const encodedTeacher = encodeURIComponent(teacher);
+                        window.location.href = `/goai-gallery/?class=${encodedTeacher}`;
+                        };
+                    } else {
+                    // Student projects are now displayed on separate lesson-specific pages
+                    // This page only shows example projects
+                    const lessonLinks = [document.getElementById("lesson-5-6"), document.getElementById("lesson-9-10"), document.getElementById("lesson-11-12")]
+                    for (const link of lessonLinks) {
+                        const url = new URL(link.getAttribute("href"), window.location.origin)
+                        url.searchParams.set("class", CLASS_FILTER);
+                        link.setAttribute("href", url.toString());
+                    }
                     
-                })
-            }
-            
+
+                    document.getElementById("add-project").addEventListener('click', () => {
+                        document.getElementById('submit-modal').style.display="flex";
+                    })
+
+                    document.getElementById("closeModalBtn").addEventListener('click', () => {
+                        document.getElementById('submit-modal').style.display="none";
+                    })
+
+                    
+
+                    const form = document.getElementById("projectForm"); 
+                    
+                    
+                    form.addEventListener("submit", async (e) => {
+                        e.preventDefault(); // stops page reload
+
+
+                        document.getElementById("submit-modal").style.display = "none";
+                        const formData = new FormData(form);
+
+
+
+                        const lesson = formData.get("lesson");
+                        formData.set("className", CLASS_FILTER)
+                        const title = formData.get("title");
+                        const description = formData.get("description");
+                        const name = formData.get("name");
+
+
+
+                        // formData.append("lesson", lesson);
+                        // formData.append("name", name);
+                        // formData.append("title", title);
+                        // formData.append("description", description);
+                        // formData.append("projectFile", file); // file must come from an <input type="file">
+
+                        const res = await fetch(`${host}/edit_json`, {
+                            method: "POST",
+                            body: formData
+                        });
+                        
+                    })
+                }
+            })
+          
         </script>
     </body></html>
