@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Class</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-8 rounded-xl shadow-md text-center w-full max-w-md">
+    <h1 class="text-2xl font-bold mb-4">Create a Class</h1>
+
+    <div class="flex gap-2 mb-4">
+      <input 
+        id="class-input"
+        type="text"
+        placeholder="Enter class name"
+        class="flex-1 px-4 py-2 border rounded-lg"
+      />
+      <button 
+        id="create-btn"
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        Create
+      </button>
+    </div>
+
+    <p id="status-message" class="text-sm"></p>
+  </div>
+
+  <script>
+    const host = "https://goai-backend-3309c298eb92.herokuapp.com";
+    //const host = "http://localhost:3000";
+
+    document.getElementById("create-btn").onclick = async () => {
+      let className = document.getElementById("class-input").value.trim();
+
+      if (!className) {
+        return;
+      }
+
+      className = className.replace(/\s+/g, "-");
+
+      const statusEl = document.getElementById("status-message");
+      statusEl.textContent = "Checking...";
+      statusEl.className = "text-gray-500";
+
+      try {
+        // 1. Check if exists
+        const res = await fetch(`${host}/folder_exists`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ className }),
+        });
+
+        const data = await res.json();
+
+        if (data.exists) {
+          statusEl.innerHTML = `
+        <span>Class already exists with this name.</span>
+        <a 
+            href="/goai-gallery/?class=${encodeURIComponent(className)}"
+            class="block mt-2 text-blue-500 underline hover:text-blue-700"
+        >
+            Go to your class gallery page →
+        </a>
+        `;
+        statusEl.className = "text-red-500";
+          return;
+        }
+
+        // 2. Create class (you NEED this endpoint)
+        await fetch(`${host}/create_class`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ className }),
+        });
+
+        statusEl.innerHTML = `
+        <span>Class successfully created!</span>
+        <a 
+            href="/goai-gallery/?class=${encodeURIComponent(className)}"
+            class="block mt-2 text-blue-500 underline hover:text-blue-700"
+        >
+            Go to your class gallery page →
+        </a>
+        `;
+        statusEl.className = "text-green-600";
+
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Something went wrong.";
+        statusEl.className = "text-red-500";
+      }
+    };
+  </script>
+
+</body>
+</html>
